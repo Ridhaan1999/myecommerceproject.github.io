@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=de-vice-width, initial-scale=1.0">
+    <title>bestMart.in</title>
+    <link href="style.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Lemonada:wght@600&family=Lobster&display=swap" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet"/>
+</head>
+<body>
+  <!--nav Bar-->
+    <nav>
+       
+        <div class="nav-container">
+          <!--Heading-->
+            <div class="nav-header">
+                <h2>bestMart.in</h2>
+            </div>
+          <!--elements-->
+            <ul class="nav-elements">
+              <li>
+                <button  data-id="vegitable" class="filter-btn" onclick="document.location='#products'">Vegitables</button>
+              </li>
+              <li>
+                 <button data-id="health" class="filter-btn" onclick="document.location='#products'">Health</button>
+              </li>
+              <li>
+                <button data-id="beauty" class="filter-btn" onclick="document.location='#products'">Beauty</button>
+              </li>
+              <li>
+                <button data-id="snacks" class="filter-btn" onclick="document.location='#products'">Snacks</button>
+              </li>
+            </ul>
+            <!--Shopping cart-->
+            <section class="cart-burgar">
+                <div class="burgar">
+                   <div class="line-1" id="line"></div>
+                   <div class="line-2" id="line"></div>
+                   <div class="line-3" id="line"></div>
+                </div>
+                <div class="cart">
+                   <p>
+                      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                   </p>
+                </div>
+            </section>
+        </div>
+      </nav>
+      <!--SideBar-->
+    <aside class="sidebar">
+      <div class="cross">
+        <button> <i class="fas fa-times"></i></button>
+      </div>
+      <div>
+        <ul class="sidebar-list">
+          <li>
+            <button  data-id="vegitable" class="filter-btn" onclick="document.location='#products'">Vegitables</button>
+          </li>
+          <li>
+            <button data-id="health" class="filter-btn" onclick="document.location='#products'">Health</button>
+         </li>
+         <li>
+           <button data-id="beauty" class="filter-btn" onclick="document.location='#products'">Beauty</button>
+         </li>
+         <li>
+           <button data-id="snacks" class="filter-btn" onclick="document.location='#products'">Snacks</button>
+         </li>
+         <li>
+          <button onclick="document.location='message.html'">Your Rewards</button>
+        </li>
+        <li>
+          <button onclick="document.location='message.html'">Privacy Policy</button>
+        </li>
+      </ul>
+      </div>
+    </aside>
+<!--
+========
+Slideshow
+========
+-->
+    <div class="slider-container">
+
+      <!--first slide start-->
+      <div class="slide" id="slide-1">
+        <div class="numbertext">1/3</div>
+        <h1 class="header">Big Saving Days</h1>
+         <p class="para" id='p-1'>
+          Lorem ipsum dolor sit amet consectetur 
+          adipisicing elit. Vel eaque similique earu
+          m commodi deserunt exercitationem dolorem 
+          maxime,  Vel eaque similique earu
+          m commodi deserunt exercitationem dolorem 
+          maxime, 
+        </p>
+        <button class="slider-btn" data-id="17">Add to cart</button> 
+        
+       <div>
+        <img src="./beauty.jpg" class="combo-3"/>
+       </div>
+       
+       <div class="circle">
+            from<br/> 299<br/> only
+       </div>
+        
+        <!-- <img src="" alt="first" class="bg-images-1" id="img"/>
+       -->
+      </div>
+      <!--first slide end-->
+      <!--second slide start-->
+      <div class="slide" id="slide-2">
+          <div class="numbertext" id="numbertext-2">2/3</div>
+          <h1 class="header">Big Saving Days</h1>
+          <p class="para" id='p-2'>
+            Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Vel eaque similique earu
+            m commodi deserunt exercitationem dolorem 
+            maxime, architecto quisquam accusamus laud
+            Vel eaque similique earu
+           </p>
+          <button class="slider-btn" data-id="18">Add to cart</button>
+          <div>
+               <img src="./dal.jpg" class="combo-3"/>
+           </div>
+           <div class="circle">
+            from<br/> 299<br/> only
+           </div>
+           <!-- <img src="./back-image-6.jpg" alt="second" class="bg-images-2" id="img"/> -->
+    </div>
+    <!--second slide ends-->
+    <!--third slide start-->
+    <div class="slide" id="slide-3">
+        <div class="numbertext" id="numbertext-3">3/3</div>
+        <h1 class="header">Big Saving Days</h1>
+        <p class="para" id="p-3">
+            Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. Vel eaque similique earu
+            m commodi deserunt exercitationem dolorem 
+            maxime, architecto quisquam accusamus laud
+            Vel eaque similique earu
+        </p>
+        <button class="slider-btn" data-id="19">Add to cart</button>
+        <div>
+          <img src="./sansodine.jpg" class="combo-3"/>
+        </div>
+        <div class="circle" id="circle-3">
+          from<br/> 299<br/> only
+        </div>
+      
+        <!-- <img src="./back-image-4.jpg" alt="third" class="bg-images-3" id="img"/> -->
+        
+      </div>
+
+    </div>
+
+<!--
+=====
+ products
+=====
+-->
+  
+   <section class="menu" id="products">
+        <div class="title">
+            <h1>Our Products</h1>
+            <div class="underline"></div>
+        </div>
+        <!-- filter buttons-->
+        <div class="btn-container">
+            <button type="button" class="filter-btn" data-id="all">All</button>
+            <button type="button" class="filter-btn" data-id="health">Health</button>
+            <button type="button" class="filter-btn" data-id="beauty">Beauty</button>
+            <button type="button" class="filter-btn" data-id="cooking">Cooking</button>
+            <button type="button" class="filter-btn" data-id="vegitable">Vegitables</button>
+            <button type="button" class="filter-btn" data-id="snacks">Snacks</button>
+        </div>
+        <div class="section-center">
+           <!--menu items-->
+           <article class="menu-item">
+               <img src="./health-1.jpg" alt="menu-item" class="photo"/>
+               <div class="item-info">
+                 <header>
+                    <h4>Red Bull</h4>
+                    <h4 class="price">$20</h4>
+                 </header>
+                 <p class="item-text">Lorem ipsum dolor sit amet consectetur adipisicing 
+                   elit. Accusamus nulla inventore incidunt aspernatur ess
+                   e possimus nihil dolorem molestiae, fugit impedit!</p>
+               </div>
+               
+                 <button type="button" class="item-cart-button">Add to cart</button>
+               
+              
+           </article>
+           <!--menu items end-->
+        </div>
+
+   </section>
+
+<!--
+  ======
+  Reviews
+  ======
+-->
+   <main>
+    <section class="review-container">
+       <!--title-->
+       <div class="review-title">
+         <h2>Our Reviews</h2>
+         <div class="review-underline"></div>
+       </div> 
+       <!--reviews-->
+       <article class='review-review'>
+         <div class="review-image-contaner">
+           <img src="./e-image-1.jpg" id="person-img" alt=""/>
+         </div>
+         <h2 id="author">sara jones</h2>
+         <p id="info">Lorem ipsum dolor, sit amet consectetur 
+           adipisicing elit. Vel laboriosam tempore 
+           ipsam quaerat molestias labore 
+           sed illum veritatis dolorum voluptatum.</p>
+         <div class="review-button-container">
+           <button class="prev-btn">
+            <i class="fas fa-chevron-left"></i>
+           </button>
+           <button class="next-btn">
+            <i class="fas fa-chevron-right"></i>
+           </button>
+         </div>
+       </article>
+     </section>
+
+       <!-- frequently asked questions-->
+       <section class="question-container">
+        <div  class="review-title">
+          <h2>frequently Asked Questions</h2>
+          <div class="review-underline"></div>
+        </div>
+         
+        <article class="questions-questions">
+            <div class="question-div">
+              
+               <h3>What kind of payment mode do you accept?</h3>
+               <div class="test"><i class="far fa-plus-square"></i></div>
+            
+               <p class="hide-question-para-1">We accept all credit cards,UPI,COD,Net Banking etc.</p.>
+            </div>
+            <div class="question-div">
+              <h3>Are your products organic?</h3>
+              <div class="test"><i class="far fa-plus-square"></i></div>
+              <p  class="hide-question-para-1">Yes,all the products are organic and no harsh chemical used in it.</p>
+            </div>
+            <div class="question-div">
+               <h3>What is your return policy?</h3>
+               <div class="test"><i class="far fa-plus-square"></i></div>
+               <p  class="hide-question-para-1">You can easily return our products in case you don't want to keep it.</p>
+            </div>
+            <div class="question-div">
+               <h3>What about quality of your products?</h3>
+               <div class="test"><i class="far fa-plus-square"></i></div>
+               <p  class="hide-question-para-1">They are very high quality products, low in cost,you can definately buy it.</p>
+            </div>
+        </article>
+  </section>
+</main>
+
+<!--
+  ======
+    footer
+  ======
+-->
+
+  <footer>
+      <article class="links-container">
+            
+               <ul class="footer-links">
+                 <li>
+                   <a href="message.html">About Us</a>
+                  </li>
+                  <li>
+                    <a href="message.html">Track Orders</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Returns</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Jobs</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Shipping</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Blog</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Partners</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Bloggers</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Support</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Terms of Use</a>
+                   </li>
+                   <li>
+                    <a href="message.html">Press</a>
+                   </li>
+               </ul>
+            
+      </article>
+      <section class="address">
+          <h2>bestMart.in Ltd</h2>
+          <p>1481 Creekside Lane Avila Beach, CA 93424, P.O. BOX 68
+          <p>+91 9588965360</p>
+          <p>bestmart1999@gmail.com</p>
+          </p>
+      </section>
+      <section class="social-links">
+        <h3>follow us</h3>
+        <ul class="social-list">
+          <li>
+           <a href="message.html">  <i class="fab fa-facebook"></i></a>
+          </li> 
+          <li>
+            <a href="message.html">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+             <a href="message.html">
+                <i class="fab fa-behance"></i>
+             </a>
+          </li>
+          <li>
+             <a href="message.html">
+               <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+          <li>
+             <a href="message.html">
+               <i class="fab fa-sketch"></i>
+             </a>
+          </li>  
+       </ul>
+      </section>
+  </footer>
+
+     
+ 
+
+
+    <script   src="script.js"></script>
+    <!-- <script type="module" src="http://cart.js"></script> -->
+</body>
+</html>

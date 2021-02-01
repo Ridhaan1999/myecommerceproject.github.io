@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Conformation</title>
+    
+    <style>
+       h1,h3{
+        font-family: 'Lemonada', cursive;
+       }
+       p{
+        font-family: 'Lobster', cursive;
+       }
+       body
+        {
+            background: black;
+        }
+        .container
+        {
+            border:3px solid black;
+            background: hotpink;
+            width:70vw;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            max-width: 500px;
+            padding: 2rem;
+            color:white;
+
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Lemonada:wght@600&family=Lobster&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!--
+        font-family: 'Carter One', cursive;
+font-family: 'Lemonada', cursive;
+font-family: 'Lobster', cursive;
+    -->
+    <div class="container">
+        <h1>Thank you for your order</h1>
+        <h3>Order number is:<span class="order-no"></span></h3>
+        <p>You will receive an email conformation shortly.</p>
+    </div>
+    <script>
+        const orderNo=document.querySelector('.order-no');
+     orderNo.innerHTML=randomNumber(1000000,10000000);
+    function  randomNumber(min,max)
+    {
+        return Math.floor(Math.random()*(max-min)+min);
+    }
+    </script>
+</body>
+</html>
