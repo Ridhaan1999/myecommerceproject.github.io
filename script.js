@@ -1,8 +1,13 @@
+
+/*=====
+  navbar code
+======
+*/
 const burgar=document.querySelector('.burgar');
-console.log(burgar);
+const countItem=document.querySelector('.countItem');
 const sidebar=document.querySelector('.sidebar');
-// console.log(sidebar);
 const cross=document.querySelector('.cross');
+// to slide sidebar
 let open=false;
 burgar.addEventListener('click',()=>{
     if(open===false)
@@ -16,6 +21,7 @@ burgar.addEventListener('click',()=>{
         open=false;
     }
 });
+//to close sidebar
 cross.addEventListener('click',()=>{
     sidebar.style.transform='translate(-100%)';
     open=false;
@@ -29,6 +35,7 @@ cross.addEventListener('click',()=>{
 const slideMenu=[
     {
             id:17,
+            position:'firstSliderItem',
             title:"Maybelline office pack",
        
             price:299,
@@ -36,12 +43,14 @@ const slideMenu=[
     },
     {
         id:18,
+        position:'secondSliderItem',
         title:"Pulses",
         price:299,
         img:"./dal.jpg"
     },
     {
         id:19,
+        position:'thirdSliderItem',
         title:"Sensodyne",
         price:299,
         img:"./sansodine.jpg"
@@ -51,59 +60,30 @@ const slideMenu=[
 const sliderBtns=document.querySelectorAll('.slider-btn');
 sliderBtns.forEach(function(btn){
     btn.addEventListener('click',function(e){
-        console.log(e.currentTarget.dataset.id);
-        switch(e.currentTarget.dataset.id)
+        for(let i=0;i<slideMenu.length;i++)
         {
-              case '17':
-                if(localStorage.getItem('firstSliderItem')!==null){
-                    alert('Item already in your cart');
-                    
+            if(e.currentTarget.dataset.id==slideMenu[i].id)
+            {
+                if(localStorage.getItem(slideMenu[i].position)!==null){
+                    Toast.show('This item is already in your cart','error');
                 } 
                 else{
-                    localStorage.setItem('firstSliderItem',JSON.stringify({
-                        id:17,
-                        length:menu.length+3,
+                    localStorage.setItem(slideMenu[i].position,JSON.stringify({
+                        id:slideMenu[i].id,
+                        length:slideMenu.length,
                         quantity:1,
-                        price:slideMenu[0].price,
+                        price:slideMenu[i].price,
                     }));
-                    alert('Item added successfully in your cart');
-                }
-               break;
-               case '18':
-                if(localStorage.getItem('secondSliderItem')!==null){
-                    alert('Item already in your cart');
-                    
+                    Toast.show('Item added successfully in your cart','success');
+                    countItem.innerHTML=localStorage.length;
                 } 
-                else{
-                    localStorage.setItem('secondSliderItem',JSON.stringify({
-                        id:18,
-                        length:menu.length+3,
-                        quantity:1,
-                        price:slideMenu[1].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-               break;
-               case '19':
-                if(localStorage.getItem('thirdSliderItem')!==null){
-                    alert('Item already in your cart');
-                    
-                } 
-                else{
-                    localStorage.setItem('thirdSliderItem',JSON.stringify({
-                        id:19,
-                        length:menu.length+3,
-                        quantity:1,
-                        price:slideMenu[2].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-               break;
+                
+            }
         }
     })
 })
 
-
+// to change slide after seconds
 let counter=0;
 showSlides();
 function showSlides()
@@ -265,43 +245,72 @@ Products
 
 const sectionCenter=document.querySelector('.section-center');
 const filterBtns=document.querySelectorAll('.filter-btn');
-// console.log(cartArticle);
-console.log(filterBtns);
- let obj,arr=[];
-// localStorage.removeItem('arrayLength');
+const position=['firstItem','secondItem','thirdItem','fourthItem',
+                'fifthItem','sixthItem','seventhItem','eightItem',
+               'nineItem','tenthItem','eleventhItem','twelthItem',
+                'thirteenItem','fourtheenItem','fifteenItem',
+                'sixteenItem'];
 
- 
+//  toastify message code
+const Toast={
+    init(){
+        this.hideTimeOut=null;
+        this.el=document.createElement('div');
+        this.el.className='toast'
+        document.body.appendChild(this.el);
+    },
+    show(message,state)
+    {
+      clearTimeout(this.hideTimeOut);
+      this.el.textContent=message;
+      this.el.className='toast toast--visible';
 
+      if(state)
+      {
+          this.el.classList.add(`toast--${state}`);
+      }
+      this.hideTimeOut=setTimeout(()=>{
+          this.el.classList.remove('toast--visible');
+      },3000);
+
+    }
+}
 
 window.addEventListener('DOMContentLoaded',()=>{
     displayMenuItems(menu);
+    Toast.init();
+    if(localStorage.length!=0)
+    {
+    countItem.innerHTML=localStorage.length-1;
+    }
+    else
+    {
+     countItem.innerHTML=0;
+    }
 });
+
+//filter buttons code
 
 filterBtns.forEach(function(btn)
 {
-    console.log(btn);
+    
     btn.addEventListener('click',function(e)
     {
         const category=e.currentTarget.dataset.id;
-        console.log(category);
+        
         const menuCategory=menu.filter(function(menuItem)
         {
            if(menuItem.category===category)
-           {
-               
-               return menuItem;
-           }
+              return menuItem;
         })
-        if(category==='all')
-        {
-            displayMenuItems(menu);
+        if(category==='all'){
+            displayMenuItems(menu)
         }
         else
-        {
-            displayMenuItems(menuCategory);
-        }
+        {displayMenuItems(menuCategory);}
     })
 })
+
 
 
 function displayMenuItems(menuItems)
@@ -315,7 +324,7 @@ function displayMenuItems(menuItems)
         <div class="item-info">
           <header>
              <h4>${item.title}</h4>
-             <h4 class="price">${item.price}</h4>
+             <h4 class="price"><i class="fas fa-rupee-sign"></i>${item.price}</h4>
           </header>
           <p class="item-text">${item.desc}</p>
           <button type="button" class="item-cart-button" data-btn="${item.id}">Add to cart</button>
@@ -328,326 +337,34 @@ function displayMenuItems(menuItems)
 
     sectionCenter.innerHTML=newItems;
     //cart code
-    const a=document.querySelectorAll('.item-cart-button');
-    console.log(a);
-    let i=0;
-    a.forEach(function(btn){
+    const addToCart=document.querySelectorAll('.item-cart-button');
+
+
+    addToCart.forEach(function(btn){
         btn.addEventListener('click',(e)=>{
              
-            switch(e.currentTarget.dataset.btn)
+            for(let i=1;i<=menu.length;i++)
             {
-                  case '1':
-                    if(localStorage.getItem('firstItem')!==null){
-                        alert('Item already in your cart');
+                if(e.currentTarget.dataset.btn==i)
+                {
+                    if(localStorage.getItem(position[i-1])!==null){
                         
+                        Toast.show('This item is already in your cart','error');
                     } 
                     else{
-                        localStorage.setItem('firstItem',JSON.stringify({
-                            id:1,
+                        localStorage.setItem(position[i-1],JSON.stringify({
+                            id:i,
                             length:menuItems.length,
                             quantity:1,
-                            price:menu[0].price,
+                            price:menu[i-1].price,
                         }));
-                        alert('Item added successfully in your cart');
-                    }
-                   
-               
-                  break;
-                  case '2':
-                    if(localStorage.getItem('secondItem')!==null){
-                        alert('Item already in your cart');
-                        
+                        Toast.show('Item added successfully in your cart','success');
+                        countItem.innerHTML=localStorage.length;
                     } 
-                    else{
-                      localStorage.setItem('secondItem',JSON.stringify({
-                        id:2,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[1].price,
-                    }));
-                    alert('Item added successfully in your cart');
                 }
-                  break;
-                  case '3':
-                    if(localStorage.getItem('thirdItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('thirdItem',JSON.stringify({
-                        id:3,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[2].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '4':
-                    if(localStorage.getItem('fourthItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('fourthItem',JSON.stringify({
-                        id:4,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[3].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '5':
-                    if(localStorage.getItem('fifthItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('fifthItem',JSON.stringify({
-                        id:5,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[4].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '6':
-                    if(localStorage.getItem('sixthItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('sixthItem',JSON.stringify({
-                        id:6,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[5].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '7':
-                    if(localStorage.getItem('seventhItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('seventhItem',JSON.stringify({
-                        id:7,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[6].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '8':
-                    if(localStorage.getItem('eightItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('eightItem',JSON.stringify({
-                        id:8,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[7].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '9':
-                    if(localStorage.getItem('nineItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('nineItem',JSON.stringify({
-                        id:9,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[8].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '10':
-                    if(localStorage.getItem('tenthItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('tenthItem',JSON.stringify({
-                        id:10,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[9].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '11':
-                    if(localStorage.getItem('eleventhItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('eleventhItem',JSON.stringify({
-                        id:11,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[10].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '12':
-                    if(localStorage.getItem('twelthItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('twelthItem',JSON.stringify({
-                        id:12,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[11].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '13':
-                      
-                      localStorage.setItem('thirteenItem',JSON.stringify({
-                        id:13,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[12].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                  break;
-                  case '14':
-                    if(localStorage.getItem('fourtheenItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('fourtheenItem',JSON.stringify({
-                        id:14,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[13].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '15':
-                    if(localStorage.getItem('fifteenItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('fifteenItem',JSON.stringify({
-                        id:15,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[14].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
-                  case '16':
-                    if(localStorage.getItem('sixteenItem')!==null){
-                        alert('Item already in your cart');
-                        
-                    } 
-                    else{
-                      localStorage.setItem('sixteenItem',JSON.stringify({
-                        id:16,
-                        length:menuItems.length,
-                        quantity:1,
-                        price:menu[15].price,
-                    }));
-                    alert('Item added successfully in your cart');
-                }
-                  break;
             }
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-            //  num=e.currentTarget.dataset.btn;
-            //   length=menuItems.length;
-            //   if( localStorage.getItem('btnNum')===null)
-            //   {
-                 
-            //   }
-            //   else{
-            //      localStorage.setItem('oldBtnNum',localStorage.getItem('btnNum')) ;
-            //   }
-            //   localStorage.setItem('btnNum',`${num}`);
-            //   localStorage.setItem('arrayLength',`${length}`);
-            // if(localStorage.getItem('newItem')!==null)
-            // {
-            //     for(;i<2;i++)
-            //     {
-                    
-            //             arr[0]={
-            //                 id:JSON.parse(localStorage.getItem('newItem')).id,
-            //                    length:JSON.parse(localStorage.getItem('newItem')).length,
-            //             }
-            //             localStorage.setItem(`firstItem`,JSON.stringify(arr[0]));
-                        
-                    
-
-            //     }
-            // } 
-            
-            //     obj= {
-            //         id:e.currentTarget.dataset.btn,
-            //         length:menuItems.length
-            //     };
-            //     localStorage.setItem('newItem',JSON.stringify(obj));
-            
-            //  console.log();
-            //  console.log(a.id);
-     
-           
-        })
-     
-    });
-
+    })
+  });
 }
 
 /*
@@ -731,21 +448,15 @@ const question=document.querySelectorAll('.question-div');
 question.forEach(function(que){
     const icons=que.querySelectorAll('.test');
     const para=que.querySelectorAll('.hide-question-para-1');
-    icons.forEach(function(x)
+    icons.forEach(function(arg_1)
     {
-        x.addEventListener('click',function(){
-                para.forEach(function(w){
-                    w.classList.toggle("hide-question-para-2");
+        arg_1.addEventListener('click',function(){
+                para.forEach(function(arg_2){
+                    arg_2.classList.toggle("hide-question-para-2");
 
             })
         });
     })
 });
 
-/*
-  Cart JavaScript
-*/
 
-// export default num;
-// export default length;
-// export default menu;
