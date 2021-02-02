@@ -572,6 +572,10 @@ main{
     color:hsl(205, 78%, 60%);
     background: none;
 }
+.test:active
+{
+    background:none;
+}
 /*
 =====
 frequently asked questions
