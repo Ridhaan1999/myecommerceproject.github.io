@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
 p{
     font-family: 'Lobster', cursive;
@@ -208,10 +209,10 @@ button:hover,input:hover{
         left:2px; 
         /* right:30px; */
         top:50%; 
-        width:200px; 
+        width:150px; 
         /* margin-left: 50px;  */
         z-index: 2;
-        height: 200px;
+        height: 180px;
         border:2px solid goldenrod;
         border-radius: 50px;
 }
@@ -297,7 +298,7 @@ button:hover,input:hover{
     position: absolute;
     z-index: 2;
     top:83%;
-    left:15%;
+    left:45%;
     width:7rem;
     animation: prize-animation 1s ease;
     
@@ -334,12 +335,14 @@ button:hover,input:hover{
 }
 .section-center
 {
-    width:85vw;
+    
+    width:100%;
     margin:0 auto;
     max-width: 1170px;
     display: grid;
     gap:3rem 2rem;
-    justify-items: center;
+    padding-left: 1rem;
+    
 
 }
 .menu-item
@@ -349,20 +352,22 @@ button:hover,input:hover{
     max-width:25rem;
     border:2px solid white;
     border-radius: 2px;
+    width:fit-content;
 }
 .photo
 {
     border:0.25rem solid #c59d5f;
     height:220px;
-    width:220px;
+    width:200px;
     object-fit: contain;
     border-radius: 0.5rem;
-    margin-left:0.2rem;
+    margin-left:1rem;
+    margin-top: .2rem;
 }
 .item-info header{
     border-bottom:0.5px dotted hsl(210, 22%, 49%);;
     display: flex;
-    justify-content: space-evenly;
+    
     font-family: 'Lemonada', cursive;
 
 }
@@ -370,6 +375,7 @@ button:hover,input:hover{
 {
     margin-bottom: 0.5rem;
     color:white;
+    margin:0 30px;
 }
 .price
 {
@@ -379,13 +385,15 @@ button:hover,input:hover{
 {
     margin-bottom: 0;
     padding-top: 1rem;
-    
+    padding-left: 1rem;
+    width:200px;
     color:white;
+    justify-self:  center;
     font-family: 'Lobster', cursive;
 }
 .item-cart-button
 {
-    margin: 2rem 5rem;
+    margin: 2rem 2rem;
 }
 .btn-container
 {
@@ -419,25 +427,7 @@ button:hover,input:hover{
 {
       background: hotpink;
 }
-@media screen and (min-width:1200px)
-{
-    .menu{
-        margin-top: 80vh;
-    }
-    .section-center
-    {
-        width:95vw;
-        grid-template-columns: 1fr 1fr;
-    }
-    .photo{
-        height:150px;
-    }
-    .btn-container
-   {
-       width:60vw;
-    
-   }
-}
+
 .toast
 {
     position: fixed;
@@ -703,7 +693,7 @@ footer{
 .one-cart-item
 {
          display: grid;
-         grid-template-columns: auto auto auto;
+         grid-template-columns: auto auto auto ;
          padding: 1rem;
          border:1px solid goldenrod
 }
@@ -735,18 +725,25 @@ footer{
 }
 
 .single-cart-counter {
-      text-align: center;
+      
        line-height: 2rem;
        color: black;
        cursor: pointer;
        font-size: large;
+       text-align: center;
        
+       /* border: 1px solid red; */
+}
+.remove-single-button
+{
+    width:7rem;
 }
 #cart-item-counter
 {
-    width:0.8rem;
+    width:2rem;
     background: none;
     color:black;
+    margin: 0 1rem;
 }
 
 .cart-container
@@ -888,6 +885,9 @@ footer{
   {
       margin-top: 90vh;
   }
+  .section-center{
+      justify-content: center;
+  }
   .filter-btn
   {
       width:12rem;
@@ -896,6 +896,26 @@ footer{
   }
     
     
+}
+@media screen and (min-width:1200px)
+{
+    .menu{
+        margin-top: 80vh;
+    }
+    .section-center
+    {
+        width:95vw;
+        grid-template-columns: 1fr 1fr;
+    
+    }
+    .photo{
+        height:150px;
+    }
+    .btn-container
+   {
+       width:60vw;
+    
+   }
 }
 
 
