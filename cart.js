@@ -195,6 +195,7 @@ let total=0;
         
         if(localStorage.getItem(menu[i].itemPosition)!==null)
         {
+            console.log('hello');
             addItemInCart(JSON.parse(localStorage.getItem(menu[i].itemPosition)));
           
         }
@@ -275,7 +276,7 @@ function decreaseItem(getObj)
 function addItemInCart(getObject)
 {
       // console.log(getObject.quantity);
-    for(let i=0;i<getObject.length;i++)
+    for(let i=0;i<menu.length;i++)
     {
         if(getObject.id==menu[i].id)
         {
@@ -287,7 +288,7 @@ function addItemInCart(getObject)
                         </div>
                         <div class="single-cart-description">
                             <h3>${menu[i].title}</h3>
-                            <h4>${getObject.price}</h4>
+                            <h4><i class="fas fa-rupee-sign"></i>${getObject.price}</h4>
                             <button type="button" class="remove-single-button" data-id="${menu[i].id}">Remove</button>
                         </div>
                         <div class="single-cart-counter" >
@@ -302,8 +303,8 @@ function addItemInCart(getObject)
                         </div>`;
                         total=total+getObject.price;
                         localStorage.setItem('total',total);
-                        sum.innerHTML=localStorage.getItem('total');
-
+                        sum.innerHTML=`<i class="fas fa-rupee-sign"></i>`+localStorage.getItem('total');
+              console.log(cartArticle);
                         
         }
     }
