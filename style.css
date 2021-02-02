@@ -11,13 +11,13 @@ a
 {
     font-family: 'Lemonada', cursive;
 }
-h1,h2,h3{
+h1,h2,h3,h4{
     font-family: 'Carter One', cursive;
 }
 button,input
 {
    background: hotpink;
-   width:12rem; 
+   width:12rem;
    height: 2rem;
    color: white;
    border: none; 
@@ -53,7 +53,7 @@ button:hover,input:hover{
 .burgar
 {
     position: absolute;
-    left:40px;
+    left:25px;
     top:17px;
     cursor:pointer;
 }
@@ -78,6 +78,17 @@ button:hover,input:hover{
     font-size: larger;
     cursor: pointer;
     
+}
+.countItem
+{
+    position: absolute;
+    top:1px;
+    color: black;
+    font-size: large;
+    font-family: 'Lemonada', cursive;
+    width:20px;
+    height:20px;
+    text-align: end;
 }
 /* nav bar cart icon ends*/
 
@@ -107,21 +118,10 @@ button:hover,input:hover{
     outline:none;
     border:none;
     background: none;
+    
 }
-.cross button:active{
-    animation: crossRotation 0.8s;
-}
-@keyframes crossRotation
-{
-    from
-    {
-       transform: rotate(0deg);
-    }
-    to
-    {
-       transform: rotate(720deg);
-    }
-}
+
+
 .sidebar-list
 {
     position: absolute;
@@ -205,11 +205,11 @@ button:hover,input:hover{
 .combo-3
 { 
         position: absolute;
-        left:5px; 
-        right:30px;
-        top:60%; 
+        left:2px; 
+        /* right:30px; */
+        top:50%; 
         width:200px; 
-        margin-left: 50px; 
+        /* margin-left: 50px;  */
         z-index: 2;
         height: 200px;
         border:2px solid goldenrod;
@@ -220,15 +220,15 @@ button:hover,input:hover{
     position: absolute;
     border:1px solid white;
     background: black;
-    width:150px;
-    height: 150px;
+    width:100px;
+    height: 100px;
     z-index: 2;
     left:65%;
-    top:10%;
+    top:5%;
     border-radius: 50%;
     text-align: center;
-    line-height: 2.5rem;
-    font-size: xx-large;
+    line-height: 1.5rem;
+    font-size: small;
     color: white;
     padding-top: 5px;
     font-family: 'Lemonada', cursive;
@@ -266,7 +266,7 @@ button:hover,input:hover{
 {
     position: absolute;
     z-index: 2;
-    top:30%;
+    top:20%;
     left:15px;
     font-size: 4rem;
     color: rgb(0, 102, 128);
@@ -277,9 +277,9 @@ button:hover,input:hover{
 {
    position: absolute;
    z-index: 2;
-   top:60%;
-   left:55%;
-   width:40%;
+   top:45%;
+   left:52%;
+   width:45%;
    height:25%;
    color: white;
    animation: prize-animation 1s ease;
@@ -296,8 +296,9 @@ button:hover,input:hover{
 {
     position: absolute;
     z-index: 2;
-    top:93%;
-    left:55%;
+    top:83%;
+    left:15%;
+    width:7rem;
     animation: prize-animation 1s ease;
     
 }
@@ -333,7 +334,7 @@ button:hover,input:hover{
 }
 .section-center
 {
-    width:90vw;
+    width:85vw;
     margin:0 auto;
     max-width: 1170px;
     display: grid;
@@ -361,7 +362,7 @@ button:hover,input:hover{
 .item-info header{
     border-bottom:0.5px dotted hsl(210, 22%, 49%);;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     font-family: 'Lemonada', cursive;
 
 }
@@ -378,12 +379,13 @@ button:hover,input:hover{
 {
     margin-bottom: 0;
     padding-top: 1rem;
+    
     color:white;
     font-family: 'Lobster', cursive;
 }
 .item-cart-button
 {
-    margin: 2rem 6rem;
+    margin: 2rem 5rem;
 }
 .btn-container
 {
@@ -404,12 +406,14 @@ button:hover,input:hover{
         color:white;
         background: none;
         padding: 10px;
-        font-size: large;
-        letter-spacing: .3rem;
+        font-size: medium;
+        letter-spacing: .1rem;
         cursor: pointer;
         outline: none;
         border-radius: 5px;
         line-height: .25rem;
+        width:8rem;
+
 }
 .filter-btn:hover
 {
@@ -433,6 +437,49 @@ button:hover,input:hover{
        width:60vw;
     
    }
+}
+.toast
+{
+    position: fixed;
+    top:20px;
+    left:0;
+    right:0;
+    width:70vw;
+    max-width:500px;
+    margin: auto;
+    max-width: 400px;
+    padding: 6px;
+    background: #cccccc;
+    color: #333333;
+    font-family: 'Lemonada', cursive;
+    text-align: center;
+    border:1px solid #aaaaaa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s,top 0.2s,visibility 0.2s;
+}
+.toast--visible
+{
+    top:20px;
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+.toast--success
+{
+    background: rgb(234, 0, 255);
+    border-color: black;
+    color: white;
+    z-index: 2;
+}
+.toast--error
+{
+    background: tomato;
+    border-color: black;
+    color: white;
+    z-index: 2;
 }
 
 /*
@@ -515,7 +562,7 @@ main{
 .prev-btn,.next-btn
 {
    
-   width: 8rem;
+   width: 4rem;
    color:hsl(205, 90%, 76%);
    font-size: 1.25rem;
    background: transparent;
@@ -684,6 +731,7 @@ footer{
 .single-cart-description h4
 {
         align-self: center;
+        font-size: smaller;
 }
 
 .single-cart-counter {
@@ -703,7 +751,7 @@ footer{
 
 .cart-container
 {
-        width:200px;
+        width:250px;
         height:150px;
         display: flex;
         flex-direction: column;
@@ -793,7 +841,8 @@ footer{
   }
   .combo-3
   {
-    top:320px;  
+    top:320px;
+    left:100px;  
   }
   #p-1
   {
@@ -813,6 +862,10 @@ footer{
       font-size: 6rem;
   }
   .circle{
+      width:150px;
+      height:150px;
+      line-height: 2.5rem;
+      font-size: x-large;
       top:30%;
       left:75%;
   }
@@ -823,6 +876,8 @@ footer{
   .slider-btn
   {
       top:80%;
+      left:55%;
+      width:12rem;
   }
   
   #numbertext-3
@@ -832,6 +887,12 @@ footer{
   .menu
   {
       margin-top: 90vh;
+  }
+  .filter-btn
+  {
+      width:12rem;
+      font-size: large;
+      letter-spacing: .3rem;
   }
     
     
